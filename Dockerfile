@@ -1,22 +1,23 @@
-FROM node:18-alpine as deps
+# Utiliza una imagen base oficial de Node.js
+FROM node:18
 
+# Establece el directorio de trabajo en /app
 WORKDIR /app
 
-COPY package*.json ./ 
+# Copia el package.json y package-lock.json a /app
+COPY package*.json ./
 
-RUN npm install 
+# Instala las dependencias del proyecto
+RUN npm install
 
-FROM node:18-alpine as builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-
+# Copia el resto de los archivos de la aplicación a /app
 COPY . .
+
+# Construye la aplicación NestJS
 RUN npm run build
 
-FROM node:18-alpine as runner
-WORKDIR /app
-COPY package.json ./
-RUN npm install
-COPY --from=builder /app/dist ./dist
+# Expone el puerto en el que la aplicación estará escuchando
+EXPOSE 3000
 
-CMD ["node", "dist/main.js"]
+# Define el comando para ejecutar la aplicación
+CMD ["npm", "run", "test:e2e"]

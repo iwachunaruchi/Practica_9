@@ -1,17 +1,17 @@
-import { Module } from "@nestjs/common";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { CarreraModule } from "./carreras/module/carrera.module";
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CarreraModule } from './carreras/module/carrera.module';
 
 @Module({
-    imports: [
-        TypeOrmModule.forRoot({
-          type: 'mongodb',
-          url: 'mongodb://localhost:27017/nest',
-          useUnifiedTopology: true,
-          synchronize: true,
-          autoLoadEntities: true,
-        }),
-        CarreraModule,
-      ],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mongodb',
+      url: 'mongodb+srv://diego:<diego>@practica9.gns9qvl.mongodb.net/practica9?retryWrites=true&w=majority',
+      useUnifiedTopology: true,
+      synchronize: true,
+      autoLoadEntities: true,
+    }),
+    CarreraModule,
+  ],
 })
 export class AppModule {}
