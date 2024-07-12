@@ -23,7 +23,7 @@ describe('CarreraController (e2e)', () => {
 
   it('/carrera (POST)', async () => {
     const newCarrera = {
-      name: 'Maratón de la Ciudad',
+      name: 'Maratón de la Ciudad_1',
       C_kilometers: 42.195,
       adiccional_details: 'Prueba de maratón en la ciudad',
       fecha: '2024-07-01',
